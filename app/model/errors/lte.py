@@ -8,22 +8,21 @@ from app.model.exceptions.incorrect_params_error import IncorrectParamsError
 class LocalTruncationError:
     """ Class represents local truncation error (LTE) of a function and its approximation. """
 
-    def __init__(self, solution_function, approximation_method):
+    def __init__(self, solution_function):
         """
         Initialization of the LTE.
 
         :param solution_function: function that represents exact solution.
-        :param approximation_method: approximation method for the equation.
          Can be one of the 3 options: "Euler's method", "Improved Euler's method", "Runge Kutta method".
         """
         self.solution_function = solution_function
-        self.approximation_method = approximation_method
 
-    def __call__(self, x0, endpoint, **kwargs) -> np.ndarray:
+    def __call__(self, approximation_method, x0, endpoint, **kwargs) -> np.ndarray:
         """
         Function calculates local truncation error (LTE) for a given range.
         Make sure to pass one of the following parameters: step, count.
 
+        :param approximation_method: approximation method for the equation.
         :param x0: starting point for a function.
         :param endpoint: endpoint for a function.
         :param kwargs: Should include either 'step' - a step of a function,
@@ -68,7 +67,7 @@ class LocalTruncationError:
         for i, x in enumerate(np.linspace(x0, endpoint, steps)):
             if i == 0:
                 continue
-            y_approximate = self.approximation_method(xi, y_real, step)
+            y_approximate = approximation_method(xi, y_real, step)
             y_real = self.solution_function(x)
             arr[i] = y_real - y_approximate
             xi = x
