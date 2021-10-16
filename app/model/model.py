@@ -1,3 +1,4 @@
+import numpy
 import numpy as np
 
 from app.model.approximations.euler_method import EulerApproximation
@@ -22,6 +23,9 @@ class Model:
         self.y0 = 2.
         self.X = 1.5
         self.steps = 6
+
+        self.n0 = 10
+        self.N = 100
 
     def x_plane(self):
         return np.linspace(self.x0, self.X, self.steps, dtype=np.float32)
@@ -64,3 +68,42 @@ class Model:
 
     def runge_kutta_gte(self):
         return self._gte(self._runge_kutta_method, self.x0, self.X, count=self.steps, y0=self.y0)
+
+    def n_plane(self):
+        return np.linspace(self.n0, self.N, self.N - self.n0 + 1, dtype=np.int)
+
+    def euler_lte_errors(self):
+        return np.array([
+            numpy.amax(self._lte(self._euler_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])
+
+    def improved_euler_lte_errors(self):
+        return np.array([
+            numpy.amax(self._lte(self._improved_euler_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])
+
+    def runge_kutta_lte_errors(self):
+        return np.array([
+            numpy.amax(self._lte(self._runge_kutta_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])
+
+    def euler_gte_errors(self):
+        return np.array([
+            numpy.amax(self._gte(self._euler_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])
+
+    def improved_euler_gte_errors(self):
+        return np.array([
+            numpy.amax(self._gte(self._improved_euler_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])
+
+    def runge_kutta_gte_errors(self):
+        return np.array([
+            numpy.amax(self._gte(self._runge_kutta_method, self.x0, self.X, y0=self.y0, count=n))
+            for n in range(self.n0, self.N + 1)
+        ])

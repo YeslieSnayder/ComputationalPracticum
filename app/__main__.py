@@ -10,8 +10,9 @@ class Application:
         self.controller = Controller(self.model, self.view)
 
     def run(self):
-        self.controller.show_page1()
-        self.controller.show_page2()
+        # self.controller.show_page1()
+        # self.controller.show_page2()
+        self.controller.show_page3()
 
 
 if __name__ == '__main__':
