@@ -47,62 +47,20 @@ class Model:
             arr[i] = method(xs[i - 1], arr[i - 1], step)
         return arr
 
-    def euler_lte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._lte(self._euler_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._lte(self._euler_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def euler_lte(self):
+        return self._lte(self._euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
-    def improved_euler_lte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._lte(self._improved_euler_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._lte(self._improved_euler_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def improved_euler_lte(self):
+        return self._lte(self._improved_euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
-    def runge_kutta_lte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._lte(self._runge_kutta_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._lte(self._runge_kutta_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def runge_kutta_lte(self):
+        return self._lte(self._runge_kutta_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
-    def euler_gte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._gte(self._euler_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._gte(self._euler_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def euler_gte(self):
+        return self._gte(self._euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
-    def improved_euler_gte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._gte(self._improved_euler_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._gte(self._improved_euler_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def improved_euler_gte(self):
+        return self._gte(self._improved_euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
-    def runge_kutta_gte(self, start, end, y0, steps=-1, step=0):
-        # TODO: Check step and steps and raise error
-        if step != 0:
-            return self._gte(self._runge_kutta_method, start, end, step=step, y0=y0)
-        elif steps > 0:
-            return self._gte(self._runge_kutta_method, start, end, steps=steps, y0=y0)
-        else:
-            # TODO: Raise error
-            return 0
+    def runge_kutta_gte(self):
+        return self._gte(self._runge_kutta_method, self.x0, self.X, count=self.steps, y0=self.y0)

@@ -1,6 +1,7 @@
 from tabulate import tabulate
 
 from app.model.model import Model
+from app.model.exceptions.incorrect_params_error import IncorrectParamsError
 
 
 class ConsoleView:
@@ -29,8 +30,33 @@ class ConsoleView:
             return
         ConsoleView.print_table(data)
 
+    def update_page2(self, method: ['lte', 'gte'] = None) -> None:
+        if method is not None and method not in ['lte', 'gte']:
+            raise IncorrectParamsError('"method" with values "lte" or "gte"')
+
+        data = {'X': self.model.x_plane()}
+        if method == 'gte':
+            if self.page2_config['show_euler']:
+                data['Euler GTE Error'] = self.model.euler_gte()
+            if self.page2_config['show_IE']:
+                data['Improved Euler GTE Error'] = self.model.improved_euler_gte()
+            if self.page2_config['show_RK']:
+                data['Runge Kutta GTE Error'] = self.model.runge_kutta_gte()
+        else:
+            if self.page2_config['show_euler']:
+                data['Euler LTE Error'] = self.model.euler_lte()
+            if self.page2_config['show_IE']:
+                data['Improved Euler LTE Error'] = self.model.improved_euler_lte()
+            if self.page2_config['show_RK']:
+                data['Runge Kutta LTE Error'] = self.model.runge_kutta_lte()
+        self.show_page1(data)
+
+    def show_page2(self, data=None, method: ['lte', 'gte'] = None) -> None:
+        if data is None:
+            self.update_page2(method)
+            return
+        ConsoleView.print_table(data)
+
     @staticmethod
     def print_table(table: dict):
-        print('-' * 62)
-        print(tabulate(table, headers='keys'))
-        print('-' * 62)
+        print(tabulate(table, headers='keys', tablefmt='fancy_grid'))

@@ -6,9 +6,11 @@ class Controller:
         self.model = model
         self.view = view
 
-    def update_page1(self):
-        # update model by checking checkboxes
-        self.view.update_page1()
-
     def show_page1(self):
         self.view.show_page1()
+
+    def show_page2(self):
+        self.view.show_page2()
+
+    def show_page3(self):
+        self.view.show_page3()

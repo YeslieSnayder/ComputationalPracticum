@@ -11,6 +11,7 @@ class Application:
 
     def run(self):
         self.controller.show_page1()
+        self.controller.show_page2()
 
 
 if __name__ == '__main__':
