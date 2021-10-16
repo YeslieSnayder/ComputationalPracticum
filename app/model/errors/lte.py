@@ -69,6 +69,6 @@ class LocalTruncationError:
                 continue
             y_approximate = approximation_method(xi, y_real, step)
             y_real = self.solution_function(x)
-            arr[i] = y_real - y_approximate
+            arr[i] = abs(y_real - y_approximate)
             xi = x
         return arr
