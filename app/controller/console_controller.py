@@ -3,14 +3,14 @@ import sys
 from app.model.model import Model
 
 
-class Controller:
+class ConsoleController:
     def __init__(self, model: Model, view):
         self.model = model
         self.view = view
 
-        self.page1_config = {'show_y': True, 'show_euler': True, 'show_IE': True, 'show_RK': True}
-        self.page2_config = {'method': 'lte', 'show_euler': True, 'show_IE': True, 'show_RK': True}
-        self.page3_config = {'method': 'lte', 'show_euler': True, 'show_IE': True, 'show_RK': True}
+        self.page1_config = {'show_y': True, 'show_euler': True, 'show_ie': True, 'show_rk': True}
+        self.page2_config = {'method': 'lte', 'show_euler': True, 'show_ie': True, 'show_rk': True}
+        self.page3_config = {'method': 'lte', 'show_euler': True, 'show_ie': True, 'show_rk': True}
 
     def update_page1(self):
         self.model.x0 = self.view.get_x0()
@@ -19,8 +19,8 @@ class Controller:
         self.model.steps = self.view.get_count()
         self.page1_config['show_y'] = self.view.get_show_y()
         self.page1_config['show_euler'] = self.view.get_show_euler()
-        self.page1_config['show_IE'] = self.view.get_show_IE()
-        self.page1_config['show_RK'] = self.view.get_show_RK()
+        self.page1_config['show_ie'] = self.view.get_show_ie()
+        self.page1_config['show_rk'] = self.view.get_show_rk()
 
         self.show_page1()
 
@@ -31,8 +31,8 @@ class Controller:
         self.model.steps = self.view.get_count()
         self.page2_config['method'] = self.view.get_method()
         self.page2_config['show_euler'] = self.view.get_show_euler()
-        self.page2_config['show_IE'] = self.view.get_show_IE()
-        self.page2_config['show_RK'] = self.view.get_show_RK()
+        self.page2_config['show_ie'] = self.view.get_show_ie()
+        self.page2_config['show_rk'] = self.view.get_show_rk()
 
         self.show_page2()
 
@@ -41,8 +41,8 @@ class Controller:
         self.model.N = self.view.get_N()
         self.page3_config['method'] = self.view.get_method()
         self.page3_config['show_euler'] = self.view.get_show_euler()
-        self.page3_config['show_IE'] = self.view.get_show_IE()
-        self.page3_config['show_RK'] = self.view.get_show_RK()
+        self.page3_config['show_ie'] = self.view.get_show_ie()
+        self.page3_config['show_rk'] = self.view.get_show_rk()
 
         self.show_page3()
 
