@@ -20,7 +20,6 @@ let page_parameters = {
         {id: 'X_field', name: 'X'},
         {id: 'y0_field', name: 'y0'},
         {id: 'steps_field', name: 'steps'},
-        {id: 'method_field', name: 'method', type: 'text'}
     ],
     visibility_params: [
         {id: 'euler', name: 'Y Euler'},
@@ -33,7 +32,6 @@ let page_parameters = {
     parameters: [
         {id: 'n0_field', name: 'n0'},
         {id: 'N_field', name: 'N'},
-        {id: 'method_field', name: 'method', type: 'text'}
     ],
     visibility_params: [
         {id: 'euler', name: 'Y Euler'},
@@ -110,13 +108,8 @@ let $tabs = function (target) {
       let div = document.createElement('div'),
           input = document.createElement('input'),
           label = document.createElement('label');
-      if (page.parameters[i].name === 'method') {
-          input.setAttribute('type', page.parameters[i].type);
-          input.setAttribute('placeholder', 'Enter ' + page.parameters[i].name + ' (lte, gte):');
-      } else {
-          input.setAttribute('type', 'number');
-          input.setAttribute('placeholder', 'Enter ' + page.parameters[i].name + ':');
-      }
+      input.setAttribute('type', 'number');
+      input.setAttribute('placeholder', 'Enter ' + page.parameters[i].name + ':');
       input.setAttribute('class', 'fields_param');
       input.setAttribute('required', '');
       input.setAttribute('id', page.parameters[i].id);
