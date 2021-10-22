@@ -1,5 +1,6 @@
 eel.expose(updateImage);
 function updateImage() {
+    console.log('Updated: ' + new Date().toLocaleString());
     let image = document.getElementById('graph');
     image.setAttribute('src', 'img/graph.png');
 }

@@ -11,20 +11,17 @@ controller = WebController(model, view)
 
 
 @eel.expose
-def onUpdatePage1(page, params):
-    print(page, params)
+def onUpdatePage1(params):
     controller.onUpdatePage1(params)
 
 
 @eel.expose
-def onUpdatePage2(page, params):
-    print(page, params)
+def onUpdatePage2(params):
     controller.onUpdatePage2(params)
 
 
 @eel.expose
-def onUpdatePage3(page, params):
-    print(page, params)
+def onUpdatePage3(params):
     controller.onUpdatePage3(params)
 
 

@@ -8,3 +8,4 @@ class IncorrectParamsError(Exception):
         :param message: explanation of the error.
         """
         self.message = message.format(args)
+        super().__init__(self.message)

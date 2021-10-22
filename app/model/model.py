@@ -9,9 +9,16 @@ from app.model.errors.gte import GlobalTruncationError
 
 
 class Model:
+    """
+    Represents the model in MVC pattern.
+    Contains business logic and necessary calculations.
+    It provides an interface to work with data.
+    """
     def __init__(self):
-        self.__solution_function = lambda x: (x * (1 + x ** 2 / 3)) / (1 - x ** 2 / 3)
-        self.__derivative_function = lambda x, y: (y ** 2 + x * y - x ** 2) / x ** 2
+        """ Model initialization. """
+        self._const = 1
+        self.__solution_function = lambda x: -x**2 - 1 + self._const * np.exp(x**2)
+        self.__derivative_function = lambda x, y: 2 * x**3 + 2 * x * y
 
         self._euler_method = EulerApproximation(self.__derivative_function)
         self._improved_euler_method = ImprovedEulerApproximation(self.__derivative_function)
@@ -19,32 +26,76 @@ class Model:
         self._lte = LocalTruncationError(self.__solution_function)
         self._gte = GlobalTruncationError(self.__solution_function)
 
-        self.x0 = 1.
-        self.y0 = 2.
-        self.X = 1.5
-        self.steps = 6
+        self.x0 = 0
+        self.y0 = 0
+        self.X = 10
+        self.steps = 50
 
         self.n0 = 10
         self.N = 100
 
-    def x_plane(self):
-        return np.linspace(self.x0, self.X, self.steps, dtype=np.float32)
+    def change_initial_condition(self, x0: float = None, y0: float = None) -> None:
+        """
+        Changes initial value of a constant in the equation according to new values of x0 and y0.
+        :param x0: x0 in the initial condition.
+        :param y0: corresponding solution of x0 in the initial condition.
+        """
+        if x0 is not None:
+            self.x0 = x0
+        if y0 is not None:
+            self.y0 = y0
+        self._const = (self.y0 + self.x0**2 + 1) * np.exp(-(self.x0**2))
 
-    def exact(self):
+    def x_plane(self) -> np.ndarray:
+        """
+        Creates x-plane from values self.x0 to self.X with number of steps equals self.steps.
+         dtype is specified because of exponential function (solution function)
+         can raise OverflowError during calculation with big numbers
+         (For example, exp(1234.1) will raise the exception.)
+        :return: np.array of values x from self.x0 to self.X with number of steps = self.steps.
+        """
+        return np.linspace(self.x0, self.X, self.steps, dtype=np.float64)
+
+    def exact(self) -> np.ndarray:
+        """
+        Calculates exact solution for values of x which are returned from self.x_plane() function.
+        :return: np.array of values of exact solution on given array.
+        """
         return self.__solution_function(self.x_plane())
 
-    def euler_method(self):
+    def euler_method(self) -> np.ndarray:
+        """
+        Calculates approximation using Euler's method.
+         see self._calculate_approximation function for more details.
+        :return: np.array with values of approximate values of x using Euler's method.
+        """
         return self._calculate_approximation(self._euler_method)
 
-    def improved_euler_method(self):
+    def improved_euler_method(self) -> np.ndarray:
+        """
+        Calculates approximation using Improved Euler's method.
+         see self._calculate_approximation function for more details.
+        :return: np.array with values of approximate values of x using Improved Euler's method.
+        """
         return self._calculate_approximation(self._improved_euler_method)
 
-    def runge_kutta_method(self):
+    def runge_kutta_method(self) -> np.ndarray:
+        """
+        Calculates approximation using Runge Kutta method.
+         see self._calculate_approximation function for more details.
+        :return: np.array with values of approximate values of x using Runge Kutta method.
+        """
         return self._calculate_approximation(self._runge_kutta_method)
 
-    def _calculate_approximation(self, method):
+    def _calculate_approximation(self, method) -> np.ndarray:
+        """
+        Calculates approximate values of x using given approximation method.
+        :param method: Approximation method for calculating approximate solution for x.
+         Can be one of [EulerApproximation, ImprovedEulerApproximation, RungeKuttaApproximation].
+        :return: np.array with values of approximate values of x using given method.
+        """
         xs = self.x_plane()
-        arr = np.zeros(shape=self.steps)
+        arr = np.zeros(shape=self.steps, dtype=np.float64)
         arr[0] = self.__solution_function(xs[0])
         step = float(xs[1] - xs[0])
         for i in range(1, self.steps):

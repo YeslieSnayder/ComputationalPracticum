@@ -12,7 +12,7 @@ let page_parameters = {
         {id: 'improved', name: 'Y Improved Euler'},
         {id: 'runge_kutta', name: 'Y Runge Kutta'}
     ],
-    onUpdate: function (page, params) { eel.onUpdatePage1(page, params); }
+    onUpdate: function (page, params) { eel.onUpdatePage1(params); }
   },
   page_2: {
     parameters: [
@@ -27,7 +27,7 @@ let page_parameters = {
         {id: 'improved', name: 'Y Improved Euler'},
         {id: 'runge_kutta', name: 'Y Runge Kutta'}
     ],
-    onUpdate: function (page, params) { eel.onUpdatePage2(page, params); }
+    onUpdate: function (page, params) { eel.onUpdatePage2(params); }
   },
   page_3: {
     parameters: [
@@ -40,7 +40,7 @@ let page_parameters = {
         {id: 'improved', name: 'Y Improved Euler'},
         {id: 'runge_kutta', name: 'Y Runge Kutta'}
     ],
-    onUpdate: function (page, params) { eel.onUpdatePage3(page, params); }
+    onUpdate: function (page, params) { eel.onUpdatePage3(params); }
   }
 };
 
