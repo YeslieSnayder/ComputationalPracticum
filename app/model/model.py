@@ -124,18 +124,21 @@ class Model:
         return np.linspace(self.n0, self.N, self.N - self.n0 + 1, dtype=np.int)
 
     def euler_lte_errors(self):
+        print(f"Euler's LTE errors: x0={self.x0}, y0={self.y0}, X={self.X}, n0={self.n0}, N={self.N}")
         return np.array([
             numpy.amax(self._lte(self._euler_method, self.x0, self.X, y0=self.y0, count=n))
             for n in range(self.n0, self.N + 1)
         ])
 
     def improved_euler_lte_errors(self):
+        print(f"Improved Euler's LTE errors: x0={self.x0}, y0={self.y0}, X={self.X}, n0={self.n0}, N={self.N}")
         return np.array([
             numpy.amax(self._lte(self._improved_euler_method, self.x0, self.X, y0=self.y0, count=n))
             for n in range(self.n0, self.N + 1)
         ])
 
     def runge_kutta_lte_errors(self):
+        print(f"Runge Kutta LTE errors: x0={self.x0}, y0={self.y0}, X={self.X}, n0={self.n0}, N={self.N}")
         return np.array([
             numpy.amax(self._lte(self._runge_kutta_method, self.x0, self.X, y0=self.y0, count=n))
             for n in range(self.n0, self.N + 1)

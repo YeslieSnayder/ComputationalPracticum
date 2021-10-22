@@ -61,7 +61,7 @@ class LocalTruncationError:
         else:
             step = kwargs['step']
 
-        arr = np.zeros(shape=steps, dtype=np.float32)
+        arr = np.zeros(shape=steps, dtype=np.float64)
         xi = x0
         y_real = y0
         for i, x in enumerate(np.linspace(x0, endpoint, steps)):

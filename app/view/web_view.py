@@ -84,18 +84,18 @@ class WebView:
         data = {'X': self.model.n_plane()}
         if method == 'gte':
             if show_euler:
-                data['Euler GTE Error'] = self.model.euler_lte_errors()
+                data['Euler GTE Error'] = self.model.euler_gte_errors()
             if show_ie:
-                data['Improved Euler GTE Error'] = self.model.improved_euler_lte_errors()
+                data['Improved Euler GTE Error'] = self.model.improved_euler_gte_errors()
             if show_rk:
-                data['Runge Kutta GTE Error'] = self.model.runge_kutta_lte_errors()
+                data['Runge Kutta GTE Error'] = self.model.runge_kutta_gte_errors()
         else:
             if show_euler:
-                data['Euler LTE Error'] = self.model.euler_gte_errors()
+                data['Euler LTE Error'] = self.model.euler_lte_errors()
             if show_ie:
-                data['Improved Euler LTE Error'] = self.model.improved_euler_gte_errors()
+                data['Improved Euler LTE Error'] = self.model.improved_euler_lte_errors()
             if show_rk:
-                data['Runge Kutta LTE Error'] = self.model.runge_kutta_gte_errors()
+                data['Runge Kutta LTE Error'] = self.model.runge_kutta_lte_errors()
         WebView._change_image(data, 3)
 
     @staticmethod
