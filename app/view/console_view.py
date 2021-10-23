@@ -1,8 +1,8 @@
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 
-from app.model.model import Model
-from app.model.exceptions.incorrect_params_error import IncorrectParamsError
+from model.model import Model
+from model.exceptions.incorrect_params_error import IncorrectParamsError
 
 
 class ConsoleView:

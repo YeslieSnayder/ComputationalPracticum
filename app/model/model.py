@@ -1,11 +1,11 @@
 import numpy
 import numpy as np
 
-from app.model.approximations.euler_method import EulerApproximation
-from app.model.approximations.improved_euler_method import ImprovedEulerApproximation
-from app.model.approximations.runge_kutta_method import RungeKuttaApproximation
-from app.model.errors.lte import LocalTruncationError
-from app.model.errors.gte import GlobalTruncationError
+from model.approximations.euler_method import EulerApproximation
+from model.approximations.improved_euler_method import ImprovedEulerApproximation
+from model.approximations.runge_kutta_method import RungeKuttaApproximation
+from model.errors.lte import LocalTruncationError
+from model.errors.gte import GlobalTruncationError
 
 
 class Model:

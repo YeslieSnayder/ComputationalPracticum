@@ -1,6 +1,6 @@
 import sys
 
-from app.model.model import Model
+from model.model import Model
 
 
 class ConsoleController:

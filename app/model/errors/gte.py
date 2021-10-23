@@ -1,8 +1,8 @@
 import numpy as np
 from math import ceil
 
-from app.model.exceptions.incorrect_param_type_error import IncorrectParamTypeError
-from app.model.exceptions.incorrect_params_error import IncorrectParamsError
+from model.exceptions.incorrect_param_type_error import IncorrectParamTypeError
+from model.exceptions.incorrect_params_error import IncorrectParamsError
 
 
 class GlobalTruncationError:
