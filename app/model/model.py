@@ -69,6 +69,7 @@ class Model:
          see self._calculate_approximation function for more details.
         :return: np.array with values of approximate values of x using Euler's method.
         """
+        print(f"Euler method: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._calculate_approximation(self._euler_method)
 
     def improved_euler_method(self) -> np.ndarray:
@@ -77,6 +78,7 @@ class Model:
          see self._calculate_approximation function for more details.
         :return: np.array with values of approximate values of x using Improved Euler's method.
         """
+        print(f"Improved Euler method: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._calculate_approximation(self._improved_euler_method)
 
     def runge_kutta_method(self) -> np.ndarray:
@@ -85,6 +87,7 @@ class Model:
          see self._calculate_approximation function for more details.
         :return: np.array with values of approximate values of x using Runge Kutta method.
         """
+        print(f"Runge Kutta method: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._calculate_approximation(self._runge_kutta_method)
 
     def _calculate_approximation(self, method) -> np.ndarray:
@@ -103,12 +106,15 @@ class Model:
         return arr
 
     def euler_lte(self):
+        print(f"Euler LTE: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._lte(self._euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
     def improved_euler_lte(self):
+        print(f"Improved Euler LTE: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._lte(self._improved_euler_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
     def runge_kutta_lte(self):
+        print(f"Runge Kutta LTE: x0={self.x0}, y0={self.y0}, X={self.X}, steps={self.steps}")
         return self._lte(self._runge_kutta_method, self.x0, self.X, count=self.steps, y0=self.y0)
 
     def euler_gte(self):
