@@ -26,10 +26,10 @@ def onUpdatePage3(params):
 
 
 class Application:
-    def __init__(self, model, view, controller):
-        self.model = model
-        self.view = view
-        self.controller = controller
+    def __init__(self, _model, _view, _controller):
+        self.model = _model
+        self.view = _view
+        self.controller = _controller
 
     def run(self):
         self.controller.run()
