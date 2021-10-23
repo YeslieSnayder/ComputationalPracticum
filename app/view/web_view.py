@@ -18,6 +18,7 @@ class WebView:
         """
         Start to display the system.
         """
+        self._change_image({}, 1, callback_needed=False)
         eel.init('view/static')
         eel.start('index.html', size=(1000, 600))
 
@@ -99,12 +100,13 @@ class WebView:
         WebView._change_image(data, 3)
 
     @staticmethod
-    def _change_image(table: dict, page_number: int) -> None:
+    def _change_image(table: dict, page_number: int, callback_needed=True) -> None:
         """
         Creates a graph with given parameters and saves it to 'view/static/img' directory.
         :param table: a dictionary with all data needed to represent the graph.
          Each value should be an array with common size.
         :param page_number: a page number for axes' name.
+        :param callback_needed: special flag for sending callback to the application (graphical part).
         """
         for key in table.keys():
             if key == 'X':
@@ -119,7 +121,9 @@ class WebView:
         elif page_number == 3:
             plt.xlabel('n')
             plt.ylabel('Error')
-        plt.legend()
+        if len(table) > 1:
+            plt.legend()
         plt.savefig('view/static/img/graph.png', bbox_inches='tight', transparent=True)
-        eel.updateImage()()
+        if callback_needed:
+            eel.updateImage()()
         plt.close()
