@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from app.model.approximations.runge_kutta_method import RungeKuttaApproximation
+from model.approximations.runge_kutta_method import RungeKuttaApproximation
 
 
 class TestRungeKuttaMethod(unittest.TestCase):

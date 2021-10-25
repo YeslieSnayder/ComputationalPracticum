@@ -1,12 +1,12 @@
 import unittest
 import numpy as np
 
-from app.model.errors.gte import GlobalTruncationError
-from app.model.exceptions.incorrect_params_error import IncorrectParamsError
-from app.model.exceptions.incorrect_param_type_error import IncorrectParamTypeError
-from app.model.approximations.euler_method import EulerApproximation
-from app.model.approximations.improved_euler_method import ImprovedEulerApproximation
-from app.model.approximations.runge_kutta_method import RungeKuttaApproximation
+from model.errors.gte import GlobalTruncationError
+from model.exceptions.incorrect_params_error import IncorrectParamsError
+from model.exceptions.incorrect_param_type_error import IncorrectParamTypeError
+from model.approximations.euler_method import EulerApproximation
+from model.approximations.improved_euler_method import ImprovedEulerApproximation
+from model.approximations.runge_kutta_method import RungeKuttaApproximation
 
 
 class TestGTE(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from app.model.approximations.euler_method import EulerApproximation
+from model.approximations.euler_method import EulerApproximation
 
 
 class TestEulerMethod(unittest.TestCase):
